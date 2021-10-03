@@ -1,0 +1,14 @@
+.place-left {
+  margin-bottom: 1rem;
+}
+@media (min-width: 600px) {
+  .place-left {
+    max-width: 40%;
+  }
+}
+@media (min-width: 600px) {
+  .place-right {
+    max-width: 60%;
+    margin-left: 32px;
+  }
+}

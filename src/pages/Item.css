@@ -1,0 +1,129 @@
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.item-image {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.item-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+.item-details {
+  width: 100%;
+}
+.item-details h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: #21bdff;
+  text-transform: uppercase;
+}
+.item-details h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+.item-details h2 span {
+  color: #21bdff;
+}
+.item-meta ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.item-meta ul li {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+}
+.item-quality span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 900;
+  background-color: #21bdff;
+  color: #fff;
+  border: 2px solid #21bdff;
+}
+.item-quality span:last-child {
+  background-color: #fff;
+  color: #21bdff;
+  border: 2px solid #21bdff;
+  margin-left: 0.5rem;
+}
+.item-datetime {
+  display: flex;
+}
+.item-datetime > span {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+.item-datetime > span > svg {
+  color: #21bdff;
+  margin-right: 0.5rem;
+}
+.item-description {
+  padding-bottom: 1.5rem;
+}
+.item-details p {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+}
+.item-details p strong {
+  margin-right: 0.5rem;
+}
+@media (min-width: 600px) {
+  .item {
+    flex-direction: row;
+  }
+  .item-image {
+    max-width: 40%;
+  }
+  .item-details {
+    max-width: 60%;
+    padding-left: 2rem;
+  }
+}
+.item-score {
+  margin: 1rem auto 2rem;
+}
+.item-bar {
+  position: relative;
+  margin-left: auto;
+  width: 85%;
+  height: 20px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.item-bar::after {
+  content: attr(data-rating);
+  position: absolute;
+  color: #16d86e;
+  font-weight: 900;
+  margin-left: -35px;
+  left: 0;
+  top: 0;
+  text-align: right;
+}
+.item-bar::before {
+  content: '';
+  display: block;
+  position: relative;
+  height: 20px;
+  width: 90%;
+  border-radius: 8px 0 0 8px;
+  background-color: #16d86e;
+  overflow: hidden;
+}
