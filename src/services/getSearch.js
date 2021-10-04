@@ -1,7 +1,7 @@
 const apiKey = process.env.REACT_APP_API_KEY;
 
 export default function getSearch({ keyword = 'lord' } = {}) {
-  const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${keyword}`;
+  const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${keyword}`;
 
   return fetch(apiUrl)
     .then((res) => res.json())
