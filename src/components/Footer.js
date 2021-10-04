@@ -4,7 +4,7 @@ import './Footer.css';
 export default function Footer() {
   return (
     <div className="footer">
-      <a href="/" className="footer__ankor">
+      <a href="https://github.com/markosmk/React-Movies-Hooks" className="footer__ankor">
         <IconGithub className="footer__ankor-big" />
       </a>
     </div>
