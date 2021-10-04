@@ -8,7 +8,6 @@
     "react-router",
     "hooks"
   ],
-  "homepage": "https://github.com/markosmk/React-Movies-Hooks",
   "private": true,
   "main": "index.js",
   "dependencies": {
