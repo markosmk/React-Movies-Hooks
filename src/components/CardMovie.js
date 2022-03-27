@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { HeartIcon } from '@heroicons/react/solid';
+import { useState } from 'react';
+import SpinnerIcon from './icons/SpinnerIcon';
 
 function CardMovie({ id, title, overview, poster, vote, date, language, type }) {
   const handleFavorite = (e, id) => {
     e.preventDefault();
     console.log('tocando favourite id ' + id);
   };
+  const [loading, setLoading] = useState(true);
 
   return (
     <>
@@ -14,11 +17,20 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
         className="w-full bg-black relative overflow-hidden rounded-md group flex flex-col min-h-max sm:min-h-[30rem]"
       >
         <div className="relative overflow-hidden max-h-80">
-          <img
-            src={poster}
-            alt={title}
-            className="w-full block group-hover:scale-105 transition-transform duration-300"
-          />
+          <div
+            className="flex justify-center items-center h-80 bg-slate-700"
+            style={{ display: loading ? 'flex' : 'none' }}
+          >
+            <SpinnerIcon />
+          </div>
+          <div style={{ display: loading ? 'none' : 'block' }}>
+            <img
+              src={poster}
+              alt={title}
+              className="w-full block group-hover:scale-105 transition-transform duration-300"
+              onLoad={() => setLoading(false)}
+            />
+          </div>
           <div
             className="absolute z-20 top-4 right-4 transition-all opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100"
             onClick={(e) => handleFavorite(e, id)}
@@ -30,8 +42,8 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
           <div className="absolute left-0 bottom-0 w-full h-1/3 group-hover:h-1/6 bg-gradient-to-t from-black to-transparent transition-all duration-500"></div>
         </div>
         <div className="-mt-8 p-4 z-10 relative flex flex-1 flex-col justify-between">
-          <div className="">
-            <h2 className="text-lg font-semibold text-white mb-1 sm:mb-3 whitespace-nowrap overflow-hidden overflow-ellipsis w-full">
+          <div>
+            <h2 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-3 whitespace-nowrap overflow-hidden overflow-ellipsis w-full">
               {title}
               <span className="ml-1 text-xs uppercase text-slate-600">{language}</span>
             </h2>
@@ -40,7 +52,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
             </p>
           </div>
           <div className="flex w-full items-center gap-4">
-            <span className="text-sm text-slate-400 sm:text-white font-semibold">
+            <span className="text-xs sm:text-sm text-slate-400 sm:text-white font-semibold">
               {date}
             </span>
             <span
