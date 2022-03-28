@@ -7,9 +7,7 @@ function Layout() {
   return (
     <div className="overflow-hidden relative">
       <Header />
-      {/* <div className="container"> */}
       <Outlet />
-      {/* </div> */}
       <Footer />
     </div>
   );

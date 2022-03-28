@@ -5,9 +5,9 @@ function Footer() {
     <div className="mt-12 sm:mt-24 pt-12 sm:pt-24 pb-3 bg-black">
       <div className="container">
         <h4 className="mb-4 text-xl sm:text-2xl text-slate-100  font-light leading-10">
-          Trusted platform. Every single day our service is used by millions of people
-          while we process over 3 billion requests. We've proven for years that this is a
-          service that can be trusted and relied on.
+          Every single day our service is used by millions of people while we process over
+          3 billion requests. We've proven for years that this is a service that can be
+          trusted and relied on.
         </h4>
         <div className="pt-14 mt-14 border-t border-slate-700">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -126,6 +126,7 @@ function Footer() {
             <a
               href="https://markosmk.com"
               target="_blank"
+              rel="noreferrer"
               className="text-white hover:text-cyan-500"
             >
               markosmk
@@ -136,6 +137,7 @@ function Footer() {
             <a
               href="https://www.themoviedb.org/"
               target="_blank"
+              rel="noreferrer"
               className="text-white hover:text-cyan-500"
             >
               TheMovieDb.org
