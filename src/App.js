@@ -1,33 +1,42 @@
-import { Route, Switch } from 'react-router-dom';
-// Components
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 // Pages
-import Search from './pages/Search';
-import Item from './pages/Item';
+import {
+  Search,
+  Home,
+  Series,
+  SerieDetail,
+  MovieDetail,
+  Movies,
+  Upcoming,
+  Genre,
+} from './pages';
 import About from './pages/About';
-import Home from './pages/Home';
 import Error from './pages/Error';
 import Contact from './pages/Contact';
+import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <>
-      <div className="wrapper">
-        <div className="container">
-          <Navbar />
-          <Switch>
-            <Route path="/contact" component={Contact} />
-            <Route path="/about" component={About} />
-            <Route path="/search/:keyword" component={Search} />
-            <Route path="/item/:imdbID" component={Item} />
-            <Route exact path="/" component={Home} />
-            <Route path="*" component={Error} />
-          </Switch>
-        </div>
-      </div>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie/:id" element={<MovieDetail />} />
+          <Route path="/tv" element={<Series />} />
+          <Route path="/tv/:id" element={<SerieDetail />} />
+          <Route path="/genre/:id" element={<Genre />} />
+          <Route path="/upcoming" element={<Upcoming />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
