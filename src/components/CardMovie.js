@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
-import { HeartIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { HeartIcon } from '@heroicons/react/solid';
 import SpinnerIcon from './icons/SpinnerIcon';
+import Score from 'components/Score';
 
 function CardMovie({ id, title, overview, poster, vote, date, language, type }) {
   const handleFavorite = (e, id) => {
@@ -14,7 +16,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
     <>
       <Link
         to={`/${type}/${id}`}
-        className="w-full bg-black relative overflow-hidden rounded-md group flex flex-col min-h-max sm:min-h-[30rem]"
+        className="w-full bg-black relative overflow-hidden rounded-md group flex flex-col min-h-max sm:min-h-[30rem] select-none"
       >
         <div className="relative overflow-hidden max-h-80">
           <div
@@ -56,10 +58,15 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
               {date}
             </span>
             <span
-              className={`ml-auto text-sm text-white font-black bg-slate-800 px-2 py-1 rounded-md ${vote?.class}`}
+              className={`block md:hidden ml-auto text-sm text-white font-black bg-slate-800 px-2 py-1 rounded-md ${vote?.class}`}
             >
               {vote?.count}
             </span>
+            {vote.count !== '0.0' && (
+              <div className="ml-auto hidden md:block">
+                <Score vote={vote} />
+              </div>
+            )}
           </div>
         </div>
       </Link>

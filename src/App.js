@@ -10,6 +10,7 @@ import {
   Movies,
   Upcoming,
   Genre,
+  Person,
 } from './pages';
 import About from './pages/About';
 import Error from './pages/Error';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/tv" element={<Series />} />
           <Route path="/tv/:id" element={<SerieDetail />} />
           <Route path="/genre/:id" element={<Genre />} />
+          <Route path="/person/:id" element={<Person />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="*" element={<Error />} />
         </Route>
