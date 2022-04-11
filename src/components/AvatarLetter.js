@@ -10,7 +10,7 @@ const AvatarLetter = ({ name = 'User', radius, size = 36 }) => {
 
   const styles = {
     color: 'white',
-    backgroundColor: 'black',
+    // backgroundColor: '#00b6d4',
     width: `${size}px`,
     height: `${size}px`,
     lineHeight: `${size}px`,
@@ -20,7 +20,7 @@ const AvatarLetter = ({ name = 'User', radius, size = 36 }) => {
 
   return (
     <div
-      className="text-center flex items-center justify-center"
+      className="text-center flex items-center justify-center dark:bg-cyan-600 bg-slate-700"
       style={styles}
       aria-label={name}
     >
