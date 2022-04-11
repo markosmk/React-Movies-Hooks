@@ -16,7 +16,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
     <>
       <Link
         to={`/${type}/${id}`}
-        className="w-full bg-black relative overflow-hidden rounded-md group flex flex-col min-h-max sm:min-h-[30rem] select-none"
+        className="w-full bg-gradient-to-t from-black via-black dark:from-slate-800 dark:via-slate-800 relative overflow-hidden rounded-lg group flex flex-col min-h-max sm:min-h-[30rem] select-none"
       >
         <div className="relative overflow-hidden max-h-80">
           <div
@@ -41,7 +41,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
               <HeartIcon className="w-5 h-5" />
             </div>
           </div>
-          <div className="absolute left-0 bottom-0 w-full h-1/3 group-hover:h-1/6 bg-gradient-to-t from-black to-transparent transition-all duration-500"></div>
+          <div className="absolute left-0 bottom-0 w-full h-1/3 group-hover:h-1/6 bg-gradient-to-t from-black dark:from-slate-800 to-transparent transition-all duration-500"></div>
         </div>
         <div className="-mt-8 p-4 z-10 relative flex flex-1 flex-col justify-between">
           <div>
@@ -54,7 +54,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
             </p>
           </div>
           <div className="flex w-full items-center gap-4">
-            <span className="text-xs sm:text-sm text-slate-400 sm:text-white font-semibold">
+            <span className="text-xs sm:text-sm text-slate-400 sm:text-white  whitespace-nowrap overflow-hidden overflow-ellipsis font-semibold">
               {date}
             </span>
             <span
