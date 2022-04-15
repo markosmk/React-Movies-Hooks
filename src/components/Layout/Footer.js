@@ -1,6 +1,45 @@
 import { Link } from 'react-router-dom';
 
+function LinkFooter({ path, name }) {
+  return (
+    <li>
+      <Link
+        to={path}
+        className="text-slate-400 text-sm leading-7 hover:text-cyan-500 transition-colors"
+      >
+        {name}
+      </Link>
+    </li>
+  );
+}
+
 function Footer() {
+  const urls = {
+    general: [
+      { path: '/', name: 'Home' },
+      { path: '/faq', name: 'Faq' },
+      { path: '/about', name: 'About' },
+      { path: '/contact', name: 'Contact' },
+    ],
+    providers: [
+      { path: '/movies?providers=8', name: 'Netflix' },
+      { path: '/movies?providers=119', name: 'Amazon Prime' },
+      { path: '/movies?providers=2', name: 'Apple ITunes' },
+      { path: '/movies?providers=337', name: 'Disney Plus' },
+    ],
+    genres: [
+      { path: '/genre/28', name: 'Action' },
+      { path: '/genre/12', name: 'Adventure' },
+      { path: '/genre/18', name: 'Drama' },
+      { path: '/genre/878', name: 'Science Fiction' },
+    ],
+    aditional: [
+      { path: '/upcoming', name: 'Upcoming' },
+      { path: '/movies', name: 'Discover Movies' },
+      { path: '/tv', name: 'Tv Shows' },
+    ],
+  };
+
   return (
     <div className="mt-12 sm:mt-24 pt-12 sm:pt-24 pb-3 bg-black">
       <div className="container">
@@ -14,108 +53,33 @@ function Footer() {
             <div>
               <h5 className="text-slate-100 font-semibold">General</h5>
               <ul className="mt-4">
-                <li>
-                  <Link to="/" className="text-slate-400 text-sm leading-7">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/faq" className="text-slate-400 text-sm leading-7">
-                    Faq
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-slate-400 text-sm leading-7">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/contact" className="text-slate-400 text-sm leading-7">
-                    Contact
-                  </Link>
-                </li>
+                {urls['general'].map((item, idx) => (
+                  <LinkFooter {...item} key={idx} />
+                ))}
               </ul>
             </div>
             <div>
               <h5 className="text-slate-100 font-semibold">Providers</h5>
               <ul className="mt-4">
-                <li>
-                  <Link
-                    to="/movies?providers=8"
-                    className="text-slate-400 text-sm leading-7"
-                  >
-                    NetFlix
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/movies?providers=119"
-                    className="text-slate-400 text-sm leading-7"
-                  >
-                    Amazon Prime
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/movies?providers=2"
-                    className="text-slate-400 text-sm leading-7"
-                  >
-                    Apple ITunes
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/movies?providers=337"
-                    className="text-slate-400 text-sm leading-7"
-                  >
-                    Disney Plus
-                  </Link>
-                </li>
+                {urls['providers'].map((item, idx) => (
+                  <LinkFooter {...item} key={idx} />
+                ))}
               </ul>
             </div>
             <div>
               <h5 className="text-slate-100 font-semibold">Genres</h5>
               <ul className="mt-4">
-                <li>
-                  <Link to="/genre/28" className="text-slate-400 text-sm leading-7">
-                    Action
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/genre/12" className="text-slate-400 text-sm leading-7">
-                    Adventure
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/genre/18" className="text-slate-400 text-sm leading-7">
-                    Drama
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/genre/878" className="text-slate-400 text-sm leading-7">
-                    Science Fiction
-                  </Link>
-                </li>
+                {urls['genres'].map((item, idx) => (
+                  <LinkFooter {...item} key={idx} />
+                ))}
               </ul>
             </div>
             <div>
               <h5 className="text-slate-100 font-semibold">Sections</h5>
               <ul className="mt-4">
-                <li>
-                  <Link to="/upcoming" className="text-slate-400 text-sm leading-7">
-                    Upcoming
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/movies" className="text-slate-400 text-sm leading-7">
-                    Movies
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/tv" className="text-slate-400 text-sm leading-7">
-                    Tv Shows
-                  </Link>
-                </li>
+                {urls['aditional'].map((item) => (
+                  <LinkFooter {...item} />
+                ))}
               </ul>
             </div>
           </div>
@@ -127,7 +91,7 @@ function Footer() {
               href="https://markosmk.com"
               target="_blank"
               rel="noreferrer"
-              className="text-white hover:text-cyan-500"
+              className="text-white hover:text-cyan-500 transition-colors"
             >
               markosmk
             </a>
@@ -138,7 +102,7 @@ function Footer() {
               href="https://www.themoviedb.org/"
               target="_blank"
               rel="noreferrer"
-              className="text-white hover:text-cyan-500"
+              className="text-white hover:text-cyan-500 transition-colors"
             >
               TheMovieDb.org
             </a>

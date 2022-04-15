@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SearchForm.css';
 
 export default function SearchForm({ value }) {
   const [keyword, setKeyword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push('/search/' + keyword);
+    navigate('/search/' + keyword);
   };
 
   const handleChangeInput = (event) => {
