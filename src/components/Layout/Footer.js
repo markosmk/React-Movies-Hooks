@@ -77,8 +77,8 @@ function Footer() {
             <div>
               <h5 className="text-slate-100 font-semibold">Sections</h5>
               <ul className="mt-4">
-                {urls['aditional'].map((item) => (
-                  <LinkFooter {...item} />
+                {urls['aditional'].map((item, idx) => (
+                  <LinkFooter {...item} key={idx} />
                 ))}
               </ul>
             </div>
