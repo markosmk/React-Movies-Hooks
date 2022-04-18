@@ -1,3 +1,4 @@
+// import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Pages
@@ -11,12 +12,19 @@ import {
   Upcoming,
   Genre,
   Person,
+  Profile,
+  Recomendations,
+  Favorites,
+  Register,
+  Login,
 } from './pages';
 import About from './pages/About';
 import Error from './pages/Error';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import PrivateRoute from 'routes/PrivateRoute';
+import PublicRoute from 'routes/PublicRoute';
 
 function App() {
   return (
@@ -36,6 +44,15 @@ function App() {
           <Route path="/person/:id" element={<Person />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="*" element={<Error />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/me" element={<Profile />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/recomendations" element={<Recomendations />} />
+          </Route>
+        </Route>
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
     </BrowserRouter>
