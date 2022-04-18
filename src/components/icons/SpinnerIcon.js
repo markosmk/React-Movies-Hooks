@@ -1,7 +1,9 @@
-function SpinnerIcon() {
+function SpinnerIcon({ measure = 'h-10 w-10' }) {
   return (
     <svg
-      className="motion-reduce:hidden animate-spin h-10 w-10 text-white"
+      className={`motion-reduce:hidden animate-spin ${
+        measure ? measure : 'h-10 w-10'
+      }  text-white`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

@@ -44,7 +44,7 @@ export function SpinnerDetailPerson() {
               <div className="animate-pulse-fast block rounded-lg mb-4 w-full h-32 bg-slate-100 dark:bg-slate-800"></div>
             </div>
           </div>
-          <hr className="my-4 border-slate-100 dark:bg-slate-800" />
+          <hr className="my-4 border-slate-100 dark:border-slate-700" />
           <div className="grid grid-cols-2">
             <div className="animate-pulse-fast block rounded-lg mb-4 w-2/3 h-[56px] bg-slate-100 dark:bg-slate-800"></div>
             <div className="animate-pulse-fast block rounded-lg mb-4 w-2/3 h-[56px] bg-slate-100 dark:bg-slate-800"></div>

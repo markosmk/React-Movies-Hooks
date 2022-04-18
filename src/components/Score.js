@@ -28,7 +28,7 @@ function Score({ vote, text, url }) {
         ></circle>
       </svg>
       <b className="w-10 h-10 leading-10 text-center absolute left-0 top-0 text-sm">
-        {vote.count}
+        {vote.count === '0.0' ? 'NR' : vote.count}
       </b>
       {text && url && (
         <a href={url} target="_blank" className={vote.class} rel="noreferrer" alt="IMDb">
