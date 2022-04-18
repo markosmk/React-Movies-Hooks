@@ -1,3 +1,4 @@
+import SpinnerIcon from 'components/icons/SpinnerIcon';
 import { useState } from 'react';
 
 function ModalVideo({ isOpen, onClose, videoId }) {
@@ -33,8 +34,8 @@ function ModalVideo({ isOpen, onClose, videoId }) {
         </span>
         <div className="relative inline-block align-bottom bg-black rounded-lg overflow-hidden  shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full">
           {videoLoading && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
-              Loading..
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-slate-500">
+              <SpinnerIcon />
             </div>
           )}
 

@@ -1,6 +1,7 @@
 const AvatarLetter = ({ name = 'User', radius, size = 36 }) => {
   let initials = '';
-  const names = name.split(' ');
+  const setName = name ? name : 'User';
+  const names = setName.split(' ');
   if (names.length === 1) {
     initials = names[0].slice(0, 2).toUpperCase();
   } else if (names.length > 1) {
@@ -10,7 +11,6 @@ const AvatarLetter = ({ name = 'User', radius, size = 36 }) => {
 
   const styles = {
     color: 'white',
-    // backgroundColor: '#00b6d4',
     width: `${size}px`,
     height: `${size}px`,
     lineHeight: `${size}px`,
