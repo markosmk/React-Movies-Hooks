@@ -16,7 +16,6 @@ const formatData = (obj) => ({
 
 const register = async (email, password) => {
   const userData = await createUserWithEmailAndPassword(auth, email, password);
-  // console.log('register', userData.user);
   const user = formatData(userData.user);
   localStorage.setItem('user', JSON.stringify(user));
   return user;
@@ -24,7 +23,6 @@ const register = async (email, password) => {
 
 const login = async (email, password) => {
   const userData = await signInWithEmailAndPassword(auth, email, password);
-  // console.log('login ', userData.user);
   const user = formatData(userData.user);
   localStorage.setItem('user', JSON.stringify(user));
   return user;
@@ -33,7 +31,6 @@ const login = async (email, password) => {
 const loginWithGoogle = async () => {
   const providerGoogle = new GoogleAuthProvider();
   const userData = await signInWithPopup(auth, providerGoogle);
-  // console.log('login with Google ', userData.user);
   const user = formatData(userData.user);
   localStorage.setItem('user', JSON.stringify(user));
   return user;
@@ -46,21 +43,5 @@ const logout = async () => {
 };
 
 const getStatus = () => (auth.currentUser ? formatData(auth.currentUser) : false);
-
-// const user = auth.currentUser;
-
-//   onAuthStateChanged(auth, (currentUser) => {
-//     let userState = '';
-//     if (currentUser) {
-//       userState = formatData(currentUser);
-//       console.log('existe currentUser', userState);
-//     } else {
-//       userState = null;
-//       localStorage.removeItem('user');
-//       console.log('no Existe currentUser', userState);
-//     }
-//     console.log('al terminar el if ', userState);
-//     return userState;
-//   });
 
 export { login, register, logout, loginWithGoogle, getStatus };
