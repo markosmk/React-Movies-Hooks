@@ -13,3 +13,8 @@ export function removeObject(arr, obj, property1, property2) {
   }
   return newArray;
 }
+
+// concat classes
+export function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
