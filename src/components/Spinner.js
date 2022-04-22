@@ -16,6 +16,19 @@ export function SpinnerCard({ count = 8 }) {
   );
 }
 
+export function SpinnerCardWithFilter({ count = 8 }) {
+  return (
+    <>
+      <div className="block h-14 w-full bg-slate-100 dark:bg-slate-800 rounded-lg animate-pulse-fast"></div>
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4">
+        {Array.from({ length: count }).map((_, idx) => (
+          <CardItem key={idx} />
+        ))}
+      </div>
+    </>
+  );
+}
+
 export function SpinnerDetailMovie() {
   return (
     <>
@@ -65,6 +78,7 @@ export function SpinnerCarousel() {
     </>
   );
 }
+
 export function SpinnerGenres() {
   return (
     <>

@@ -1,5 +1,5 @@
-import SpinnerIcon from 'components/icons/SpinnerIcon';
 import { useState } from 'react';
+import SpinnerIcon from 'components/icons/SpinnerIcon';
 
 function ModalVideo({ isOpen, onClose, videoId }) {
   const [videoLoading, setVideoLoading] = useState(true);
