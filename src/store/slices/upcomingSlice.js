@@ -1,4 +1,4 @@
-import { getUpcoming } from 'services/getData';
+import { getUpcoming } from 'store/actions/upcomingActions';
 
 const upcomingSlice = (set, get) => ({
   upcoming: {
@@ -10,7 +10,7 @@ const upcomingSlice = (set, get) => ({
     isError: null,
   },
   getUpcoming: async (
-    page = '1', // max 1000
+    page = 1, // max 1000
     limit = false, // limit results
     region = get().region,
     language = get().language
@@ -22,7 +22,6 @@ const upcomingSlice = (set, get) => ({
         set((state) => ({ upcoming: { ...state.upcoming, ...response } }));
       }
     } catch (error) {
-      // console.log(error.response.data);
       set((state) => ({ upcoming: { ...state.upcoming, isError: error.response.data } }));
     } finally {
       set((state) => ({ upcoming: { ...state.upcoming, isLoading: false } }));

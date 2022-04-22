@@ -1,46 +1,38 @@
-import {
-  getAiringToday,
-  getGenres,
-  getNowPlaying,
-  getPopulars,
-  getTrending,
-  getWatchProviders,
-} from 'services/getData';
+import { getHome } from 'store/actions/homeActions';
 
 const homeSlice = (set, get) => ({
-  providers: [],
-  genres: [],
-  nowPlaying: [],
-  populars: [],
-  trending: [],
-  airingToday: [],
-  homeLoading: false,
-  homeError: null,
-  getProviders: async () => {
-    const providers = await getWatchProviders(get().region, get().language);
-    set({ providers });
+  home: {
+    nowPlaying: [],
+    populars: [],
+    trending: [],
+    airingToday: [],
+    isLoading: true, // begin in true to false when finish load fetch
+    hasError: null, // not used for show in front yet
   },
-  getGenres: async () => {
-    const genres = await getGenres(get().language);
-    set({ genres });
-  },
+  setLoadingHome: (data) => set(({ home }) => ({ home: { ...home, isLoading: data } })),
+  setHome: (data) =>
+    set(({ home }) => ({ home: { ...home, ...data, isLoading: false } })),
   getHome: async () => {
-    const [nowPlaying, populars, trending, airingToday] = await Promise.all([
-      await getNowPlaying(6, 1, get().region, get().language), // for Carousel
-      await getPopulars(12, 1, get().region, get().language), // for firs list movies
-      await getTrending(8),
-      await getAiringToday(1, 4, get().language),
-    ]);
-    // set({ nowPlaying: nowPlaying });
-    // set({ trending });
-    // set({ populars: populars });
-    // set({ airingToday: airingToday });
-    set({
-      nowPlaying,
-      trending,
-      populars,
-      airingToday,
-    });
+    console.log('getHome in homeslice');
+    try {
+      const homeSections = await getHome();
+      // set({ nowPlaying: nowPlaying });
+      // set({ trending });
+      // set({ populars: populars });
+      // set({ airingToday: airingToday });
+      set(({ home }) => ({
+        home: {
+          ...home,
+          ...homeSections,
+          // isLoading: false,
+        },
+      }));
+    } catch (error) {
+      console.log('Ups in Home ', error);
+      set(({ home }) => ({ home: { ...home, hasError: error.message } }));
+    } finally {
+      set(({ home }) => ({ home: { ...home, isLoading: false } }));
+    }
   },
 });
 
