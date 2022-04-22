@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 function MenuLinks({ className = '', genres }) {
@@ -76,4 +76,4 @@ function MenuLinks({ className = '', genres }) {
   );
 }
 
-export default MenuLinks;
+export default memo(MenuLinks);

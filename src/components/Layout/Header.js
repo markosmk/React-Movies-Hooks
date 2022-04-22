@@ -3,26 +3,24 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../../assets/logo.svg';
 import { MenuAlt2Icon } from '@heroicons/react/solid';
 
-import useStore from 'store';
-
 import FormSearch from 'components/FormSearch';
 import MenuLinks from 'components/Layout/subComponents/MenuLinks';
 import SwitchTheme from 'components/Layout/subComponents/SwitchTheme';
 import MenuUser from 'components/Layout/subComponents/MenuUser';
 
+import shallow from 'zustand/shallow';
+import useStore from 'store';
+
 function Header() {
-  const user = useStore((state) => state.auth.user);
-  const genres = useStore((state) => state.genres);
+  const user = useStore((state) => state.auth.user, shallow);
+  const genres = useStore((state) => state.genres, shallow);
   const logoutUser = useStore((state) => state.logoutUser);
 
   const [openMobile, setOpenMobile] = useState(false);
   // const region = useStore((state) => state.region);
   // const setRegion = useStore((state) => state.setRegion);
   // const setLanguage = useStore((state) => state.setLanguage);
-
   // const handleChangeRegion = (e) => {
-  //   console.log(region);
-  //   console.log(e.target.value);
   //   setRegion(e.target.value || 'US');
   //   const languageByRegion = [
   //     { region: 'AR', language: 'es-ES' },

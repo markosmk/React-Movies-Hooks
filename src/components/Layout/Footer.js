@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 function LinkFooter({ path, name }) {
@@ -113,4 +114,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default memo(Footer);

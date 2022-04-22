@@ -1,8 +1,9 @@
-import { Menu, Transition } from '@headlessui/react';
-import { CollectionIcon, HeartIcon, LogoutIcon, UserIcon } from '@heroicons/react/solid';
-import AvatarLetter from 'components/AvatarLetter';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, Transition } from '@headlessui/react';
+import { CollectionIcon, HeartIcon, LogoutIcon, UserIcon } from '@heroicons/react/solid';
+
+import AvatarLetter from 'components/AvatarLetter';
 
 function MenuUser({ user, handleLogout }) {
   return (
