@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { HeartIcon } from '@heroicons/react/solid';
+// import { HeartIcon } from '@heroicons/react/solid';
 import SpinnerIcon from './icons/SpinnerIcon';
 import Score from 'components/Score';
+import LikeItem from 'components/LikeItem';
+// import useStore from 'store';
 
 function CardMovie({ id, title, overview, poster, vote, date, language, type }) {
-  const handleFavorite = (e, id) => {
-    e.preventDefault();
-    console.log('tocando favourite id ' + id);
-  };
+  // const setFavorite = useStore((state) => state.setFavorite);
+  // const checkFavorite = useStore((state) => state.checkFavorite);
   const [loading, setLoading] = useState(true);
+  // const [fav, setFav] = useState(checkFavorite(id, type));
+  // const [favLoading, setFavLoading] = useState(false);
+  // const favSelected = checkFavorite(id);
+
+  // let isMounted = useRef(true);
+
+  // useEffect(() => {
+  //   return () => {
+  //     isMounted.current = false;
+  //   };
+  // }, []);
 
   return (
     <>
@@ -20,12 +31,13 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
       >
         <div className="relative overflow-hidden max-h-80">
           <div
-            className="flex justify-center items-center h-80 bg-slate-700"
-            style={{ display: loading ? 'flex' : 'none' }}
+            className={`justify-center items-center h-80 bg-slate-700 ${
+              loading ? 'flex' : 'hidden'
+            }`}
           >
             <SpinnerIcon />
           </div>
-          <div style={{ display: loading ? 'none' : 'block' }}>
+          <div className={loading ? 'hidden' : 'block'}>
             <img
               src={poster}
               alt={title}
@@ -33,14 +45,35 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
               onLoad={() => setLoading(false)}
             />
           </div>
-          <div
-            className="absolute z-20 top-4 right-4 transition-all opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100"
-            onClick={(e) => handleFavorite(e, id)}
+          <LikeItem id={id} poster={poster} type={type} />
+          {/* <div
+            className={`absolute z-20 top-4 right-4 transition-all ${
+              fav
+                ? 'scale-100 opacity-100'
+                : 'opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100'
+            } ${favLoading && 'select-none pointer-events-none'}`}
+            onClick={(e) =>
+              handleFavorite(e, {
+                id,
+                title,
+                poster,
+                date,
+                type,
+              })
+            }
           >
-            <div className="p-2 transition-all rounded-full bg-slate-700 bg-opacity-50 text-white hover:bg-rose-600 active:scale-90 focus:bg-rose-600 ">
-              <HeartIcon className="w-5 h-5" />
+            <div
+              className={`p-2 transition-all rounded-full ${
+                fav ? 'bg-rose-600' : 'bg-slate-700 bg-opacity-50'
+              } text-white hover:bg-rose-600 active:scale-90 focus:bg-rose-600`}
+            >
+              {favLoading ? (
+                <SpinnerIcon measure="h-5 w-5" />
+              ) : (
+                <HeartIcon className="w-5 h-5" />
+              )}
             </div>
-          </div>
+          </div> */}
           <div className="absolute left-0 bottom-0 w-full h-1/3 group-hover:h-1/6 bg-gradient-to-t from-black dark:from-slate-800 to-transparent transition-all duration-500"></div>
         </div>
         <div className="-mt-8 p-4 z-10 relative flex flex-1 flex-col justify-between">
@@ -62,7 +95,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
             >
               {vote?.count}
             </span>
-            {vote.count !== '0.0' && (
+            {vote.count && (
               <div className="ml-auto hidden md:block">
                 <Score vote={vote} />
               </div>

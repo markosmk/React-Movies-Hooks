@@ -5,9 +5,10 @@ import Footer from './Footer';
 import Header from './Header';
 import ScrollToTopBtn from 'components/ScrollToTopBtn';
 import useStore from 'store';
+import shallow from 'zustand/shallow';
 
 function Layout() {
-  const getGenres = useStore((state) => state.getGenres);
+  const getGenres = useStore((state) => state.getGenres, shallow);
 
   useEffect(() => {
     getGenres();
@@ -21,6 +22,8 @@ function Layout() {
         <Footer />
         <ScrollToTopBtn />
       </div>
+
+      <div className="col-span-4 columns-4 gap-x-4 "></div>
     </>
   );
 }

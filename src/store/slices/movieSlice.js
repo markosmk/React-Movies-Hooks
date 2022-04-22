@@ -1,4 +1,4 @@
-import { getMovies } from 'services/getData';
+import { getMovies } from 'store/actions/movietvActions';
 
 const moviesSlice = (set, get) => ({
   movies: {
@@ -11,21 +11,18 @@ const moviesSlice = (set, get) => ({
   },
   getMovies: async (
     page = 1, // max 1000
-    filters = { genres: [], providers: [] },
-    sort = '',
+    filters = { genres: [], providers: [], sort: '' },
     region = get().region, // ex, AR, CH
     language = get().language // Change Languague
   ) => {
     try {
-      const response = await getMovies(page, filters, sort, region, language);
-      if (response) {
-        if (response) {
-          set((state) => ({ movies: { ...state.movies, ...response } }));
-        }
-      }
+      set((state) => ({ movies: { ...state.movies, isLoading: true } }));
+      const response = await getMovies(page, filters, region, language);
+      set((state) => ({ movies: { ...state.movies, ...response } }));
     } catch (error) {
-      console.log(error.response.data);
       set((state) => ({ movies: { ...state.movies, isError: error.response.data } }));
+    } finally {
+      set((state) => ({ movies: { ...state.movies, isLoading: false } }));
     }
   },
 });

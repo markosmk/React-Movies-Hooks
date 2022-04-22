@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Pages
@@ -17,12 +16,13 @@ import {
   Favorites,
   Register,
   Login,
+  About,
+  Error,
+  Contact,
+  Faq,
 } from './pages';
-import About from './pages/About';
-import Error from './pages/Error';
-import Contact from './pages/Contact';
-import Layout from './components/Layout';
-import ScrollToTop from './components/ScrollToTop';
+import Layout from 'components/Layout';
+import ScrollToTop from 'components/ScrollToTop';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
@@ -35,6 +35,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<Faq />} />
           <Route path="/search" element={<Search />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetail />} />

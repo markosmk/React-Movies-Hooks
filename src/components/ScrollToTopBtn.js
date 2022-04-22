@@ -15,6 +15,9 @@ function ScrollToTopBtn() {
 
   useEffect(() => {
     window.addEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
   }, []);
 
   // Set the top cordinate to 0 make scrolling smooth

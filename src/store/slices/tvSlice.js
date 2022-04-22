@@ -1,4 +1,4 @@
-import { getTvShows } from 'services/getData';
+import { getTvShows } from 'store/actions/movietvActions';
 
 const tvSlice = (set, get) => ({
   tv: {
@@ -9,7 +9,6 @@ const tvSlice = (set, get) => ({
     isLoading: false,
     isError: null,
   },
-  // tvDetail: {},
   getTvSeries: async (
     page = '1', // max 1000
     limit = false, // limit results
@@ -19,11 +18,8 @@ const tvSlice = (set, get) => ({
     try {
       set((state) => ({ tv: { ...state.tv, isLoading: true } }));
       const response = await getTvShows(page, limit, region, language);
-      if (response) {
-        set((state) => ({ tv: { ...state.tv, ...response } }));
-      }
+      set((state) => ({ tv: { ...state.tv, ...response } }));
     } catch (error) {
-      console.log(error.response.data);
       set((state) => ({ tv: { ...state.tv, isError: error.response.data } }));
     } finally {
       set((state) => ({ tv: { ...state.tv, isLoading: false } }));
