@@ -1,6 +1,26 @@
 import axiosMod from 'services/axiosMod';
 import { viewsForBannerCarousel, viewsForCardMovie } from 'services/formatData';
 
+async function getHome(region = 'US', language = 'en-US') {
+  try {
+    const [nowPlaying, populars, trending, airingToday] = await Promise.all([
+      await axiosMod('/movie/now_playing?', { language, region }),
+      await axiosMod('/movie/popular?', { language, region }),
+      await axiosMod(`/trending/tv/day?`), // types: all, tv, movie, person
+      await axiosMod('/tv/on_the_air?', { language }),
+    ]);
+
+    return {
+      nowPlaying: viewsForBannerCarousel(nowPlaying.data.results.slice(0, 6), language), // return only 6 items
+      populars: viewsForCardMovie(populars.data.results.slice(0, 12), 'movie', language), // return only 12 items
+      trending: viewsForCardMovie(trending.data.results.slice(0, 6)), // return only 12 items
+      airingToday: viewsForBannerCarousel(airingToday.data.results.slice(0, 6), language),
+    };
+  } catch (error) {
+    console.log(error.message || error.response.data.message);
+  }
+}
+
 // for carousel
 async function getNowPlaying(limit = 8, page = 1, region = 'US', language = 'en-US') {
   try {
@@ -51,4 +71,4 @@ async function getAiringToday(limit = false, page = 1, language = 'en-US') {
   }
 }
 
-export { getNowPlaying, getPopulars, getTrending, getAiringToday };
+export { getNowPlaying, getPopulars, getTrending, getAiringToday, getHome };
