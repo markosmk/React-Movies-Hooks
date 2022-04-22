@@ -1,5 +1,3 @@
-import React from 'react';
-
 function HeaderPage({ title, description, children }) {
   return (
     <div className="p-12 bg-slate-100 dark:bg-slate-700 text-center">
