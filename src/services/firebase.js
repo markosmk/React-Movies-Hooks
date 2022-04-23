@@ -1,12 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore/lite';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_APIKEY,
-  authDomain: 'favmovie-mk.firebaseapp.com',
-  projectId: 'favmovie-mk',
-  storageBucket: 'favmovie-mk.appspot.com',
+  authDomain: `${process.env.REACT_APP_FB_PROJECT}.firebaseapp.com`,
+  projectId: process.env.REACT_APP_FB_PROJECT,
+  storageBucket: `${process.env.REACT_APP_FB_PROJECT}.appspot.com`,
   messagingSenderId: process.env.REACT_APP_FB_SENDER,
   appId: process.env.REACT_APP_FB_APPID,
 };

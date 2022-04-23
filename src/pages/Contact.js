@@ -1,8 +1,8 @@
 export default function Contact() {
   return (
     <section>
-      <h1>Contact Us</h1>
-      <div className="content">
+      <h1 className="text-3xl font-semibold text-center my-10">Contact Us</h1>
+      <div className="text-slate-400 max-w-2xl mx-auto space-y-4">
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda, libero
           sequi quidem a earum hic consequuntur quisquam expedita eligendi, officiis odio

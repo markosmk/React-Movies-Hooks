@@ -68,17 +68,15 @@ function BannerHead({ detail }) {
               </span>
               <img
                 src={detail.poster}
-                className="rounded-lg max-h-[28rem] group-hover:scale-[.98] duration-500 group-hover:grayscale transition-all"
+                className="rounded-lg max-h-[28rem] h-[28rem] group-hover:scale-[.98] duration-500 group-hover:grayscale transition-all"
                 alt="poster movie"
-                loading="lazy"
               />
             </div>
           ) : (
             <img
               src={detail.poster}
-              className="rounded-lg max-h-[28rem] shadow-md hidden lg:block absolute top-8 right-8 z-10 "
+              className="rounded-lg max-h-[28rem] h-[28rem] shadow-md hidden lg:block absolute top-8 right-8 z-10 "
               alt="poster movie"
-              loading="lazy"
             />
           )}
 
