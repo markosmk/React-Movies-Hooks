@@ -59,10 +59,18 @@ const authSlice = (set, get) => ({
       }
       const favorites = await getFavoritesFirebase();
       if (user) {
-        set(({ auth }) => ({ auth: { ...auth, user, isLoading: false, favorites } }));
+        set(({ auth }) => ({
+          auth: {
+            ...auth,
+            user,
+            isLoading: false,
+            favorites,
+            message: '',
+            isSuccess: true,
+          },
+        }));
       }
     } catch (error) {
-      console.log(error.message);
       set(({ auth }) => ({ auth: { ...auth, message: error.message } }));
     } finally {
       get().setLoadingAuth(false);
@@ -71,7 +79,17 @@ const authSlice = (set, get) => ({
   logoutUser: async () => {
     try {
       await logout();
-      set(({ auth }) => ({ auth: { ...auth, user: null, favorites: [] } }));
+      set(({ auth }) => ({
+        auth: {
+          ...auth,
+          user: null,
+          favorites: [],
+          isError: false,
+          isSuccess: false,
+          isLoading: false,
+          message: '',
+        },
+      }));
     } catch (error) {
       console.log(error.message);
       set(({ auth }) => ({ auth: { ...auth, message: error.message } }));
