@@ -4,7 +4,7 @@ import { createSearchParams, useNavigate, useSearchParams } from 'react-router-d
 import { SearchIcon } from '@heroicons/react/solid';
 import useStore from 'store';
 
-function FormSearch() {
+function FormSearch(props) {
   let navigate = useNavigate();
   const getSearchMovies = useStore((state) => state.getSearchMovies);
 
@@ -34,14 +34,14 @@ function FormSearch() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label className="relative block">
+    <form onSubmit={handleSubmit} {...props}>
+      <label className="relative block ">
         <span className="sr-only">Search</span>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
           <SearchIcon className="h-5 w-5 fill-slate-300 dark:fill-slate-400" />
         </span>
         <input
-          className="placeholder:italic placeholder:text-slate-300 block bg-white dark:bg-slate-800 w-full border-2 border-slate-300 dark:border-slate-600 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-cyan-500 sm:text-sm transition-colors"
+          className="placeholder:italic placeholder:text-slate-300 block bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-cyan-500 text-sm transition-colors lg:w-full w-20 focus:w-full dark:focus:border-cyan-600"
           placeholder="Search for movie..."
           type="text"
           name="search"

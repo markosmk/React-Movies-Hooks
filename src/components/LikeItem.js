@@ -2,16 +2,16 @@ import { HeartIcon } from '@heroicons/react/solid';
 import SpinnerIcon from 'components/icons/SpinnerIcon';
 import { useEffect, useRef, useState } from 'react';
 import useStore from 'store';
+import shallow from 'zustand/shallow';
 
-function LikeItem({ id, poster, type, likesUser }) {
-  const setFavorite = useStore((state) => state.setFavorite);
-  const checkFavorite = useStore((state) => state.checkFavorite);
-  const user = useStore((state) => state.auth.user);
-
-  const [fav, setFav] = useState(checkFavorite(id, type));
-  const [favLoading, setFavLoading] = useState(false);
-
+function LikeItem({ id, poster, type }) {
   let isMounted = useRef(true);
+  const setFavorite = useStore((state) => state.setFavorite);
+  const isFavorite = useStore((state) => state.checkFavorite(id, type));
+  const user = useStore((state) => state.auth.user, shallow);
+
+  const [fav, setFav] = useState(isFavorite);
+  const [favLoading, setFavLoading] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -21,21 +21,20 @@ function LikeItem({ id, poster, type, likesUser }) {
 
   const handleFavorite = async (e, obj) => {
     e.preventDefault();
-    if (!user) return alert('Debes estar logueado');
+    if (!user) return alert('you must log in');
 
-    console.log('tocando favourite id ' + obj.id);
-
+    setFavLoading(true);
     try {
-      setFavLoading(true);
       await setFavorite(obj);
       if (isMounted.current) {
-        setFavLoading(false);
         setFav(!fav);
       } else {
         isMounted = null;
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setFavLoading(false);
     }
   };
 
