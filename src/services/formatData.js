@@ -125,7 +125,6 @@ const viewsForCardMovie = (listing, media_type = 'movie', language = 'en-US') =>
 };
 
 const viewsForCreditsCast = (listing) => {
-  console.log(listing);
   return listing.map((item) => {
     const notAvatar = item.gender === 1 ? AVATAR_NOT_IMAGE_WOMAN : AVATAR_NOT_IMAGE_MAN;
     return {
@@ -335,12 +334,22 @@ const viewsForSocialLinks = (links) => {
 
 const viewsForReviews = (listing, language) => {
   return listing.map((item) => {
+    const url_avatar = (avatar_path) => {
+      if (avatar_path) {
+        if (avatar_path.indexOf('/http') === 0) {
+          return avatar_path.slice(1);
+        } else {
+          return AVATAR_45 + avatar_path;
+        }
+      } else {
+        return AVATAR_NOT_IMAGE;
+      }
+    };
+
     return {
       id: item.id,
       name: item.author || item.author_details.username,
-      avatar: item.author_details.avatar_path
-        ? AVATAR_45 + item.author_details.avatar_path
-        : AVATAR_NOT_IMAGE,
+      avatar: url_avatar(item.author_details.avatar_path),
       date:
         item.created_at &&
         new Date(item.created_at).toLocaleDateString(language, {
