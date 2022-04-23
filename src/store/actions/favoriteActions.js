@@ -5,7 +5,7 @@ import {
   deleteDoc,
   addDoc,
   Timestamp,
-} from 'firebase/firestore';
+} from 'firebase/firestore/lite';
 import { db } from 'services/firebase';
 
 const getFavoritesFirebase = async (uid) => {
