@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import Carousel from './components/Carousel';
 import GenresList from './components/GenresList';
