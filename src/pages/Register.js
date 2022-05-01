@@ -33,9 +33,9 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen dark:bg-slate-900">
       <div className="p-4 w-full max-w-sm mx-auto text-center">
-        <h2 className="text-xl font-bold mb-4">Register</h2>
+        <h2 className="text-xl font-bold mb-4 dark:text-white">Register</h2>
         <p className="text-slate-400 mb-4">Create a new account</p>
         {message && (
           <p className="p-4 rounded-md bg-red-200 text-red-800 text-sm">{message}</p>
@@ -44,7 +44,7 @@ function Register() {
           <input
             type="email"
             placeholder="Email Adress"
-            className="px-4 py-3 rounded-md bg-slate-100 focus:bg-white focus:outline-none border-2 border-slate-100 focus:border-cyan-600 transition-colors mb-4 w-full"
+            className="px-4 py-3 rounded-md bg-slate-100 focus:bg-white focus:outline-none border-2 border-slate-100 focus:border-cyan-600 transition-colors mb-4 w-full dark:border-slate-600 dark:bg-slate-800 dark:focus:border-cyan-600 dark:text-white"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -52,7 +52,7 @@ function Register() {
           <input
             type="password"
             placeholder="Password"
-            className="px-4 py-3 rounded-md bg-slate-100 focus:bg-white focus:outline-none border-2 border-slate-100 focus:border-cyan-600 transition-colors mb-4 w-full"
+            className="px-4 py-3 rounded-md bg-slate-100 focus:bg-white focus:outline-none border-2 border-slate-100 focus:border-cyan-600 transition-colors mb-4 w-full dark:border-slate-600 dark:bg-slate-800 dark:focus:border-cyan-600 dark:text-white"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -84,7 +84,7 @@ function Register() {
 
         <p className="mt-8 mb-4 text-slate-400 text-sm">
           Back to{' '}
-          <Link to="/" className="hover:text-cyan-500 transition-colors font-semibold">
+          <Link to="/" className="dark:text-white dark:hover:text-cyan-500 hover:text-cyan-500 transition-colors font-semibold">
             Home
           </Link>
         </p>
@@ -92,7 +92,7 @@ function Register() {
           Do you have account?{' '}
           <Link
             to="/login"
-            className="hover:text-cyan-500 transition-colors font-semibold"
+            className="dark:text-white dark:hover:text-cyan-500 hover:text-cyan-500 transition-colors font-semibold"
           >
             Login
           </Link>
