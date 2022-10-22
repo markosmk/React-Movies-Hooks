@@ -20,6 +20,7 @@ function Genre() {
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({ genres: [], providers: [], sort: '' });
 
+  // simply update filters state
   const handleGenre = (id) => {
     let newFilterGenres = [];
     if (filters.genres.includes(id)) {
@@ -31,22 +32,33 @@ function Genre() {
   };
 
   useEffect(() => {
+    if (filters.genres.length > 0) {
+      getMoviesByGenre(page, filters);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, filters]);
+
+  useEffect(() => {
     if (id) {
       setFilters((f) => ({ ...f, genres: [Number(id)] }));
     }
   }, [id]);
 
-  useEffect(() => {
-    getMoviesByGenre(page, filters);
-  }, [page, filters, getMoviesByGenre]);
-
   // only select title for headPage
   const genreSelected = () => {
     if (genres.results.length > 0 && filters.genres.length === 1) {
       const ide = filters.genres[0] || Number(id);
-      return 'Genre: ' + genres.results.find((item) => item.id === ide)?.name;
+      return (
+        <>
+          Genre: <span className="text-cyan-500"> {genres.results.find((item) => item.id === ide)?.name}</span>
+        </>
+      );
     } else if (filters.genres.length > 1) {
-      return 'Genre: Various';
+      return (
+        <>
+          Genre: <span className="text-cyan-500">Various</span>
+        </>
+      );
     } else {
       return 'Movies by Genre';
     }
@@ -61,6 +73,8 @@ function Genre() {
 
       <div className="container">
         <h2 className="text-2xl font-semibold my-6">Genres</h2>
+
+        {/* list genres */}
         <div className="flex gap-4 mt-4 mb-6 flex-wrap">
           {genres.results.length > 0 &&
             genres.results.map(({ id, name }) => (
@@ -81,13 +95,22 @@ function Genre() {
             ))}
         </div>
 
-        <ListMovies
-          isLoading={isLoading}
-          listing={moviesByGenre.results}
-          currentPage={page}
-          setPage={setPage}
-          totalPages={moviesByGenre.total_pages}
-        />
+        {filters.genres.length > 0 ? (
+          <ListMovies
+            isLoading={isLoading}
+            listing={moviesByGenre.results}
+            currentPage={page}
+            setPage={setPage}
+            totalPages={moviesByGenre.total_pages}
+          />
+        ) : (
+          <div
+            className="p-4 mb-4 text-sm text-cyan-800 bg-cyan-100 rounded-lg dark:bg-cyan-800 dark:text-slate-300"
+            role="alert"
+          >
+            <span className="font-medium">Info!</span> You must click on a genre to search for movies
+          </div>
+        )}
       </div>
     </>
   );

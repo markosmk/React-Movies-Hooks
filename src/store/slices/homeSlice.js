@@ -10,10 +10,9 @@ const homeSlice = (set, get) => ({
     hasError: null, // not used for show in front yet
   },
   setLoadingHome: (data) => set(({ home }) => ({ home: { ...home, isLoading: data } })),
-  setHome: (data) =>
-    set(({ home }) => ({ home: { ...home, ...data, isLoading: false } })),
+  setHome: (data) => set(({ home }) => ({ home: { ...home, ...data, isLoading: false } })),
   getHome: async () => {
-    console.log('getHome in homeslice');
+    // console.log('getHome in homeslice');
     try {
       const homeSections = await getHome();
       // set({ nowPlaying: nowPlaying });

@@ -56,10 +56,8 @@ function MenuLinks({ className = '', genres }) {
                           <Link
                             to={`/genre/${item.id}`}
                             className={`${
-                              active
-                                ? 'bg-cyan-500 text-white'
-                                : 'text-slate-500 dark:text-slate-400'
-                            } group flex rounded-md items-center w-full px-2 py-2 text-sm transition-colors`}
+                              active ? 'bg-cyan-500 text-white' : 'text-slate-500 dark:text-slate-400'
+                            } group flex rounded-md items-center w-full px-2 py-2 text-sm transition-colors truncate`}
                           >
                             {item.name}
                           </Link>

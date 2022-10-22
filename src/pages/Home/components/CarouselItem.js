@@ -26,15 +26,13 @@ function CarouselItem({ id, title, overview, backdrop, vote, date, status }) {
             <span className="text-sm text-slate-400">{date}</span>
           </div>
 
-          <p className="my-3 text-sm leading-7 hidden text-gray-400 w-3/5 md:flex">
-            {overview}
-          </p>
+          <p className="my-3 text-sm leading-7 hidden text-gray-400 w-3/5 md:flex">{overview}</p>
 
           <Link
             to={`/movie/${id}`}
             className="text-white max-w-52 bg-slate-500 leading-8 rounded-md px-6 py-2 items-center justify-center hover:bg-cyan-500 transition-colors hidden lg:inline-flex"
           >
-            Ver Detalles
+            See Details
           </Link>
         </div>
       </div>

@@ -48,17 +48,9 @@ function BannerHead({ detail }) {
         </div>
         <div className="w-full relative h-full">
           {detail.video ? (
-            <div
-              className="hidden lg:block absolute top-8 right-8 z-10 group cursor-pointer"
-              onClick={setOpen}
-            >
+            <div className="hidden lg:block absolute top-8 right-8 z-10 group cursor-pointer" onClick={setOpen}>
               <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white group-hover:scale-150 group-hover:text-red-600 transition-all z-20 duration-500">
-                <svg
-                  className="w-10 h-10"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -83,12 +75,13 @@ function BannerHead({ detail }) {
           <img
             className="hidden"
             src={detail.backdrop}
+            loading="lazy"
             onLoad={() => setLoaderPoster(true)}
             alt="hidden backdrop"
           />
           <div className="overflow-hidden h-full w-full bg-black">
             <div
-              className="w-full md:w-1/2 lg:w-full md:ml-auto relative h-1/2 md:h-full bg-cover bg-center lg:blur-md"
+              className="w-full md:w-2/3 lg:w-full md:ml-auto relative h-1/2 md:h-full bg-cover bg-center lg:blur-md"
               style={{
                 backgroundImage: `url(${detail.backdrop})`,
                 opacity: loaderPoster ? '0.75' : '0',
@@ -96,19 +89,13 @@ function BannerHead({ detail }) {
               }}
             >
               {/** background image */}
-              <div className="hidden md:block absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-black"></div>
+              <div className="hidden md:block absolute top-0 left-0 w-2/3 h-full bg-gradient-to-r from-black"></div>
               <div className="block md:hidden absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-black"></div>
             </div>
           </div>
         </div>
       </div>
-      {detail.video && (
-        <ModalVideo
-          isOpen={isOpen}
-          onClose={() => setOpen(false)}
-          videoId={detail.video.key}
-        />
-      )}
+      {detail.video && <ModalVideo isOpen={isOpen} onClose={() => setOpen(false)} videoId={detail.video.key} />}
     </>
   );
 }

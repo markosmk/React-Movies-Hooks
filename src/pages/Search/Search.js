@@ -38,17 +38,27 @@ function Search() {
     { title: 'Persons', count: person?.total_results || 0 },
   ];
 
+  const TextWithStyles = () => {
+    return (
+      <>
+        {searchHeader.get('q') ? (
+          <>
+            <span className="text-lime-500">{total}</span> found for{' '}
+            <span className="text-cyan-500">{searchHeader.get('q')}</span>
+          </>
+        ) : (
+          'Search Movies!'
+        )}
+      </>
+    );
+  };
   return (
     <>
       <HeaderPage
-        title={
-          searchHeader.get('q')
-            ? total + ' found for ' + searchHeader.get('q')
-            : 'Search Movies!'
-        }
+        title={<TextWithStyles />}
         description="Get recommendations for new movies to watch, rent, stream, or own."
       >
-        <FormSearch />
+        <FormSearch withButton className="flex gap-2" />
       </HeaderPage>
 
       {isLoading ? (

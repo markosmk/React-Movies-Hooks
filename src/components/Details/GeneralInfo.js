@@ -19,9 +19,7 @@ function ItemSummary({ title, description }) {
   return (
     <li className="pb-2 border-b-2 border-slate-100 dark:border-slate-700 flex">
       <span className="w-1/3 inline-block font-bold uppercase">{title}:</span>
-      <span className="w-2/3 ml-6 space-x-2 flex flex-wrap justify-start items-center">
-        {description}
-      </span>
+      <span className="w-2/3 ml-6 space-x-2 flex flex-wrap justify-start items-center">{description}</span>
     </li>
   );
 }
@@ -37,11 +35,7 @@ function ItemProviders({ title, listing }) {
       <ul className="flex justify-start flex-wrap">
         {listing.map((item) => (
           <li key={item.id} className="relative p-2 rounded-md inline-flex items-center">
-            <img
-              src={item.logo}
-              alt="logo company"
-              className="rounded-xl w-10 h-10 mr-2"
-            />
+            <img src={item.logo} alt="logo company" className="rounded-xl w-10 h-10 mr-2" />
             <h3 className="text-md font-medium leading-5">{item.name}</h3>
           </li>
         ))}
@@ -51,15 +45,7 @@ function ItemProviders({ title, listing }) {
 }
 
 // TODO: add link external
-function GeneralInfo({
-  detail = {},
-  providers = {},
-  external,
-  release,
-  reviews,
-  videos,
-  images,
-}) {
+function GeneralInfo({ detail = {}, providers = {}, external, release, reviews, videos, images }) {
   const region = useStore((state) => state.region, shallow);
   const tabSections = [
     { title: 'Summary', icon: <InformationCircleIcon className="w-6 h-6" /> },
@@ -167,10 +153,7 @@ function GeneralInfo({
                 <ItemSummary title="Budget" description={detail.budget} />
                 <ItemSummary title="Revenue" description={detail.revenue} />
                 <ItemSummary title="Original Title" description={detail.original_title} />
-                <ItemSummary
-                  title="Original Language"
-                  description={detail.spoken_languages?.name}
-                />
+                <ItemSummary title="Original Language" description={detail.spoken_languages?.name} />
                 <ItemSummary
                   title="HomePage"
                   description={
@@ -241,11 +224,9 @@ function GeneralInfo({
 
             {/* Providers */}
             <Tab.Panel className="rounded-xl py-3">
-              {providers.flatrate.length === 0 &&
-                providers.buy.length === 0 &&
-                providers.rent.length === 0 && (
-                  <p className="text-slate-400 text-sm text-center">No Providers found</p>
-                )}
+              {providers.flatrate.length === 0 && providers.buy.length === 0 && providers.rent.length === 0 && (
+                <p className="text-slate-400 text-sm text-center">No Providers found</p>
+              )}
               <ItemProviders title="For Flat Rate" listing={providers.flatrate} />
               <ItemProviders title="For Buy" listing={providers.buy} />
               <ItemProviders title="For Rent" listing={providers.rent} />
@@ -259,37 +240,31 @@ function GeneralInfo({
                 <>
                   {reviews.map((item) => {
                     return (
-                      <div
-                        key={item.id}
-                        className="flex items-center space-x-4 w-full mb-6"
-                      >
-                        <img
-                          src={item.avatar}
-                          alt="author reviews"
-                          width={45}
-                          height={45}
-                          className="flex-none place-self-start rounded-full bg-slate-100"
-                        />
+                      <article key={item.id} className="flex items-center space-x-4 w-full mb-6">
+                        <figure className="flex-none place-self-start h-12 w-12 overflow-hidden rounded-full">
+                          <img
+                            src={item.avatar}
+                            alt={item.name + ' author'}
+                            width={45}
+                            height={45}
+                            className="rounded-full bg-slate-100 w-full dark:bg-slate-500 object-cover"
+                          />
+                        </figure>
                         <div className="min-w-0 flex-auto space-y-2">
-                          <a
-                            href={item.url || '#s'}
-                            className="hover:text-cyan-500 transition-colors"
-                          >
+                          <a href={item.url || '#s'} className="hover:text-cyan-500 transition-colors">
                             <h4 className="text-slate-700 font-semibold dark:text-slate-400 text-lg leading-6 truncate">
                               {item.name}
                             </h4>
                           </a>
-                          <p className="text-sm mt-1 text-slate-400 dark:bg-slate-300">
-                            {item.date}
-                          </p>
+                          <p className="text-sm mt-1 text-slate-400">{item.date}</p>
                           <blockquote
-                            className="text-base mt-6 leading-7 text-slate-600 dark:bg-slate-300"
+                            className="text-base mt-6 leading-7 text-slate-600 dark:text-slate-500"
                             dangerouslySetInnerHTML={{
                               __html: item.content,
                             }}
                           ></blockquote>
                         </div>
-                      </div>
+                      </article>
                     );
                   })}
                 </>
@@ -337,11 +312,9 @@ function GeneralInfo({
 
             {/* Images */}
             <Tab.Panel className="rounded-xl py-3">
-              {images?.posters?.length === 0 &&
-                images?.backdrops?.length === 0 &&
-                images?.logos?.length === 0 && (
-                  <p className="text-slate-400 text-sm text-center">No Images found</p>
-                )}
+              {images?.posters?.length === 0 && images?.backdrops?.length === 0 && images?.logos?.length === 0 && (
+                <p className="text-slate-400 text-sm text-center">No Images found</p>
+              )}
 
               {images?.posters?.length > 0 && (
                 <>
