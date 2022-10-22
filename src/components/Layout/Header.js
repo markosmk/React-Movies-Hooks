@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../../assets/logo.svg';
-import { MenuAlt2Icon } from '@heroicons/react/solid';
+import { MenuAlt2Icon, SearchIcon } from '@heroicons/react/solid';
 
 import FormSearch from 'components/FormSearch';
 import MenuLinks from 'components/Layout/subComponents/MenuLinks';
@@ -78,8 +78,14 @@ function Header() {
               <option value="ES">España</option>
               <option value="BR">Brasil</option>
             </select> */}
-
-            <FormSearch className="hidden sm:flex" />
+            <Link
+              to="/search"
+              type="button"
+              className="flex lg:hidden rounded-full hover:opacity-80 hover:bg-slate-200 p-1.5 dark:hover:bg-slate-700"
+            >
+              <SearchIcon className="h-6 w-6 fill-slate-400 dark:fill-slate-400" />
+            </Link>
+            <FormSearch className="hidden lg:flex" />
             <SwitchTheme />
             <MenuUser user={user} handleLogout={handleLogout} />
           </div>

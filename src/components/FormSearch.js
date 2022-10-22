@@ -22,6 +22,7 @@ function FormSearch(props) {
   // if submit form change list movies
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!search) return;
     getSearchMovies(search);
     setSearchHeader({ q: search });
     // only change if not is in search page
@@ -34,14 +35,14 @@ function FormSearch(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} {...props}>
-      <label className="relative block ">
+    <form onSubmit={handleSubmit} className={props.className}>
+      <label className="relative block w-full">
         <span className="sr-only">Search</span>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
           <SearchIcon className="h-5 w-5 fill-slate-300 dark:fill-slate-400" />
         </span>
         <input
-          className="placeholder:italic placeholder:text-slate-300 block bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-cyan-500 text-sm transition-colors lg:w-full w-20 focus:w-full dark:focus:border-cyan-600"
+          className="placeholder:italic placeholder:text-slate-300 block bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 rounded-md w-full py-2 pl-9 pr-3 focus:outline-none focus:border-cyan-500 text-sm transition-colors dark:focus:border-cyan-600"
           placeholder="Search for movie..."
           type="text"
           name="search"
@@ -53,6 +54,15 @@ function FormSearch(props) {
           }}
         />
       </label>
+      {props?.withButton && (
+        <button
+          type="submit"
+          disabled={!search}
+          className="bg-cyan-600 px-4 py-2 h-10 text-white rounded-md text-sm hover:bg-cyan-500 disabled:opacity-50 transition-all flex items-center justify-center disabled:select-none active:scale-95 disabled:scale-95 disabled:bg-cyan-500"
+        >
+          Search
+        </button>
+      )}
     </form>
   );
 }
