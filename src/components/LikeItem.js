@@ -40,10 +40,8 @@ function LikeItem({ id, poster, type }) {
 
   return (
     <div
-      className={`absolute z-20 top-4 right-4 transition-all ${
-        fav
-          ? 'scale-100 opacity-100'
-          : 'opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100'
+      className={`absolute z-20 top-4 right-4 opacty-100 lg:transition-all ${
+        fav ? 'scale-100 lg:opacity-100' : 'lg:opacity-0 lg:scale-75 group-hover:opacity-100 group-hover:scale-100'
       } ${favLoading && 'select-none pointer-events-none'}`}
       onClick={(e) =>
         handleFavorite(e, {
@@ -54,15 +52,11 @@ function LikeItem({ id, poster, type }) {
       }
     >
       <div
-        className={`p-2 transition-all rounded-full ${
+        className={`p-2 lg:transition-all rounded-full ${
           fav ? 'bg-rose-600' : 'bg-slate-700 bg-opacity-50'
         } text-white hover:bg-rose-600 active:scale-90 focus:bg-rose-600`}
       >
-        {favLoading ? (
-          <SpinnerIcon measure="h-5 w-5" />
-        ) : (
-          <HeartIcon className="w-5 h-5" />
-        )}
+        {favLoading ? <SpinnerIcon measure="h-5 w-5" /> : <HeartIcon className="w-5 h-5" />}
       </div>
     </div>
   );

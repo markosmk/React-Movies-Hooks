@@ -1,5 +1,5 @@
 import axiosMod from 'services/axiosMod';
-import { viewsForCardMovie } from 'services/formatData';
+import { adapterCardMovie } from 'adapter';
 
 async function getUpcoming(page = 1, limit = false, region = 'US', language = 'en-US') {
   try {
@@ -11,7 +11,7 @@ async function getUpcoming(page = 1, limit = false, region = 'US', language = 'e
         page,
         total_pages,
         total_results,
-        results: viewsForCardMovie(resultsFiltered, 'movie', language),
+        results: adapterCardMovie(resultsFiltered, 'movie', language),
       };
     }
   } catch (error) {

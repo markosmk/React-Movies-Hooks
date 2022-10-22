@@ -1,5 +1,5 @@
 import axiosMod from 'services/axiosMod';
-import { viewsForBannerCarousel, viewsForCardMovie } from 'services/formatData';
+import { adapterBannerCarousel, adapterCardMovie } from 'adapter';
 
 async function getHome(region = 'US', language = 'en-US') {
   try {
@@ -11,10 +11,10 @@ async function getHome(region = 'US', language = 'en-US') {
     ]);
 
     return {
-      nowPlaying: viewsForBannerCarousel(nowPlaying.data.results.slice(0, 6), language), // return only 6 items
-      populars: viewsForCardMovie(populars.data.results.slice(0, 12), 'movie', language), // return only 12 items
-      trending: viewsForCardMovie(trending.data.results.slice(0, 6)), // return only 12 items
-      airingToday: viewsForBannerCarousel(airingToday.data.results.slice(0, 6), language),
+      nowPlaying: adapterBannerCarousel(nowPlaying.data.results.slice(0, 6), language), // return only 6 items
+      populars: adapterCardMovie(populars.data.results.slice(0, 12), 'movie', language), // return only 12 items
+      trending: adapterCardMovie(trending.data.results.slice(0, 6)), // return only 12 items
+      airingToday: adapterBannerCarousel(airingToday.data.results.slice(0, 6), language),
     };
   } catch (error) {
     console.log(error.message || error.response.data.message);
@@ -27,7 +27,7 @@ async function getNowPlaying(limit = 8, page = 1, region = 'US', language = 'en-
     const { data } = await axiosMod('/movie/now_playing?', { language, page, region });
     if (data) {
       const response = limit ? data.results.slice(0, limit) : data.results;
-      return viewsForBannerCarousel(response, language);
+      return adapterBannerCarousel(response, language);
     }
   } catch (error) {
     console.log(error.message || error.response.data.message);
@@ -39,7 +39,7 @@ async function getPopulars(limit = false, page = 1, region = 'US', language = 'e
     const { data } = await axiosMod('/movie/popular?', { language, page, region });
     if (data) {
       const response = limit ? data.results.slice(0, limit) : data.results;
-      return viewsForCardMovie(response, 'movie', language);
+      return adapterCardMovie(response, 'movie', language);
     }
   } catch (error) {
     console.log(error.message || error.response.data.message);
@@ -52,7 +52,7 @@ async function getTrending(limit = 8, type = 'tv') {
     const { data } = await axiosMod(`/trending/${type}/day?`);
     if (data) {
       const response = limit ? data.results.slice(0, limit) : data.results;
-      return viewsForCardMovie(response); // api only return language english
+      return adapterCardMovie(response); // api only return language english
     }
   } catch (error) {
     console.log(error.message || error.response.data.message);
@@ -64,7 +64,7 @@ async function getAiringToday(limit = false, page = 1, language = 'en-US') {
     const { data } = await axiosMod('/tv/on_the_air?', { language, page });
     if (data) {
       const results = limit ? data.results.slice(0, limit) : data.results;
-      return viewsForBannerCarousel(results, language);
+      return adapterBannerCarousel(results, language);
     }
   } catch (error) {
     console.log(error.message || error.response.data.message);
