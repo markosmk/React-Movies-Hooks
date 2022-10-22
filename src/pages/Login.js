@@ -30,7 +30,6 @@ function Login() {
 
     await loginUser(null, email, password);
     if (isSuccess) {
-      // console.log('paso el login');
       // in a useEffect
       navigate(from, { replace: true });
     }
@@ -41,11 +40,7 @@ function Login() {
       <div className="p-4 w-full max-w-sm mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4 dark:text-white">Login</h2>
         <p className="text-slate-400 mb-4">Enter your account details</p>
-        {(message || errors) && (
-          <p className="p-4 rounded-md bg-red-200 text-red-800 text-sm">
-            {message || errors}
-          </p>
-        )}
+        {(message || errors) && <p className="p-4 rounded-md bg-red-200 text-red-800 text-sm">{message || errors}</p>}
         <form onSubmit={handleSubmit} className="py-4">
           <input
             required
@@ -76,9 +71,7 @@ function Login() {
           </button>
         </form>
 
-        <p className="text-sm text-slate-400 mt-4 mb-2">
-          Login In with Google to continue
-        </p>
+        <p className="text-sm text-slate-400 mt-4 mb-2">Login In with Google to continue</p>
 
         <button
           disabled={isLoading}

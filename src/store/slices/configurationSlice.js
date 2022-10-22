@@ -52,7 +52,7 @@ const configurationSlice = (set, get) => ({
     }));
 
     const results = await getMovies(page, filters, get().region, get().language);
-    console.log(results);
+
     // update loading state, and new list results
     set(({ moviesByGenre }) => ({
       moviesByGenre: { ...moviesByGenre, isLoading: false, ...results },

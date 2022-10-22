@@ -33,7 +33,6 @@ function Genre() {
 
   useEffect(() => {
     if (filters.genres.length > 0) {
-      console.log(page, filters);
       getMoviesByGenre(page, filters);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +40,6 @@ function Genre() {
 
   useEffect(() => {
     if (id) {
-      console.log(id);
       setFilters((f) => ({ ...f, genres: [Number(id)] }));
     }
   }, [id]);
