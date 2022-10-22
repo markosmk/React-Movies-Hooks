@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn {
+  @apply bg-cyan-600 px-4 py-3 w-full text-white rounded-md hover:bg-cyan-500 disabled:opacity-75 transition-all flex items-center justify-center disabled:select-none active:scale-95 disabled:scale-95 disabled:bg-cyan-500;
+}
+
 .container {
   @apply sm:max-w-6xl w-full px-4 mx-auto;
 }
@@ -135,8 +139,7 @@ a {
   border-radius: 50%;
   box-shadow: inset 0 0 0 0 white;
   will-change: box-shadow, transform;
-  transition: box-shadow calc(0.4s - 0.1s) cubic-bezier(0.1, 0, 0.3, 1),
-    transform 0.7s cubic-bezier(0.2, 1, 0.2, 1),
+  transition: box-shadow calc(0.4s - 0.1s) cubic-bezier(0.1, 0, 0.3, 1), transform 0.7s cubic-bezier(0.2, 1, 0.2, 1),
     -webkit-box-shadow calc(0.4s - 0.1s) cubic-bezier(0.1, 0, 0.3, 1),
     -webkit-transform 0.7s cubic-bezier(0.2, 1, 0.2, 1);
 }

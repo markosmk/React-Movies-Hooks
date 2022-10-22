@@ -2,8 +2,8 @@ import { getGenres, getWatchProviders } from 'store/actions/apiActions';
 import { getMovies } from 'store/actions/movietvActions';
 
 const configurationSlice = (set, get) => ({
-  region: 'US', // US, ES, AR, BR
-  language: 'en-US', // es-ES, en-US, pt-BR
+  region: 'AR', // US, ES, AR, BR, CL, DE, CO
+  language: 'es-ES', // es-ES, en-US, pt-BR
   setRegion: (data) => set({ region: data }),
   setLanguage: (data) => set({ language: data }),
   genres: {
@@ -46,10 +46,14 @@ const configurationSlice = (set, get) => ({
     hasError: false,
   },
   getMoviesByGenre: async (page, filters) => {
+    // update only loading state
     set(({ moviesByGenre }) => ({
       moviesByGenre: { ...moviesByGenre, isLoading: true },
     }));
+
     const results = await getMovies(page, filters, get().region, get().language);
+    console.log(results);
+    // update loading state, and new list results
     set(({ moviesByGenre }) => ({
       moviesByGenre: { ...moviesByGenre, isLoading: false, ...results },
     }));
