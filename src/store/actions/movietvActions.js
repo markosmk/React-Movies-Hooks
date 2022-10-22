@@ -1,12 +1,12 @@
 import axiosMod from 'services/axiosMod';
 import {
-  viewForDetail,
-  viewsForCardMovie,
-  viewsForCreditsCast,
-  viewsForProvidersMovies,
-  viewsForReviews,
-  viewsForSocialLinks,
-} from 'services/formatData';
+  adapterCardMovie,
+  adapterCreditsCast,
+  adapterDetail,
+  adapterProviderMovies,
+  adapterReviews,
+  adapterSocialLinks,
+} from 'adapter';
 
 async function getMovies(
   page = 1,
@@ -42,7 +42,7 @@ async function getMovies(
         page: data.page,
         total_pages: data.total_pages <= 500 ? data.total_pages : 500,
         total_results: data.total_results,
-        results: viewsForCardMovie(data.results, 'movie', language),
+        results: adapterCardMovie(data.results, 'movie', language),
       };
       return response;
     }
@@ -79,7 +79,7 @@ async function getTvShows(page = 1, limit = false, region = 'US', language = 'en
         page: data.page,
         total_pages: data.total_pages,
         total_results: data.total_results,
-        results: viewsForCardMovie(results, 'tv', language),
+        results: adapterCardMovie(results, 'tv', language),
       };
     }
   } catch (error) {
@@ -105,19 +105,15 @@ async function getDetail(id, type = 'movie', region = 'US', language = 'en-US') 
     if (!data) throw new Error('No hay resultados para mostrar');
 
     return {
-      detail: viewForDetail(data, type, language),
-      credits: viewsForCreditsCast(data.credits.cast),
-      similar: viewsForCardMovie(data.similar.results.slice(0, 8), type, language),
-      recommendations: viewsForCardMovie(
-        data.recommendations.results.slice(0, 8),
-        type,
-        language
-      ),
-      providers: viewsForProvidersMovies(data['watch/providers'].results, region),
+      detail: adapterDetail(data, type, language),
+      credits: adapterCreditsCast(data.credits.cast),
+      similar: adapterCardMovie(data.similar.results.slice(0, 8), type, language),
+      recommendations: adapterCardMovie(data.recommendations.results.slice(0, 8), type, language),
+      providers: adapterProviderMovies(data['watch/providers'].results, region),
       videos: data.videos.results.slice(0, 4),
-      reviews: viewsForReviews(data.reviews.results, language), // TODO: have pagination
+      reviews: adapterReviews(data.reviews.results, language), // TODO: have pagination
       images: data.images, // TODO: format url images and posters
-      external_ids: viewsForSocialLinks(data.external_ids),
+      external_ids: adapterSocialLinks(data.external_ids),
       release_dates: type === 'movie' ? data.release_dates.results : [],
       episode_groups: type === 'tv' ? data.episode_groups.results : [],
     };

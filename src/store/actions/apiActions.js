@@ -1,11 +1,5 @@
 import axiosMod from 'services/axiosMod';
-import {
-  viewsForCardMovie,
-  viewsForProviders,
-  viewForPerson,
-  viewsForCreditPerson,
-  viewsForSocialLinks,
-} from 'services/formatData';
+import { adapterCardMovie, adapterCreditPerson, adapterPerson, adapterProvider, adapterSocialLinks } from 'adapter';
 
 async function getGenres(language = 'en-US') {
   try {
@@ -22,7 +16,7 @@ async function getWatchProviders(watch_region = 'US', language = 'en-US') {
       watch_region,
       language,
     });
-    if (data) return viewsForProviders(data.results);
+    if (data) return adapterProvider(data.results);
   } catch (error) {
     console.log(error.message || error.response.data.message);
   }
@@ -30,7 +24,7 @@ async function getWatchProviders(watch_region = 'US', language = 'en-US') {
 
 async function getRecomendations(ids = [], page = 1, language = 'en-US') {
   const newLimit = ids.length > 2 ? 20 : 8;
-  console.log(ids);
+
   const getRandomId = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
   const movie = getRandomId(ids);
@@ -50,7 +44,7 @@ async function getRecomendations(ids = [], page = 1, language = 'en-US') {
         page,
         total_pages,
         total_results,
-        results: viewsForCardMovie(resultsFiltered, 'movie', language),
+        results: adapterCardMovie(resultsFiltered, 'movie', language),
       };
     }
   } catch (error) {
@@ -83,20 +77,14 @@ async function getPerson(id, language = 'en-US') {
       }, []);
     };
 
-    const combinedByCount = reduceItems([
-      ...data.combined_credits.cast,
-      ...data.combined_credits.crew,
-    ]);
+    const combinedByCount = reduceItems([...data.combined_credits.cast, ...data.combined_credits.crew]);
 
     const response = {
-      detail: viewForPerson(data, language),
-      cast: viewsForCardMovie(combinedByCount.slice(0, 8), 'movie', language),
-      cast_credits: viewsForCreditPerson(data.combined_credits.cast, language),
-      crew_credits: viewsForCreditPerson(
-        reduceItems(data.combined_credits.crew),
-        language
-      ),
-      external_ids: viewsForSocialLinks(data.external_ids),
+      detail: adapterPerson(data, language),
+      cast: adapterCardMovie(combinedByCount.slice(0, 8), 'movie', language),
+      cast_credits: adapterCreditPerson(data.combined_credits.cast, language),
+      crew_credits: adapterCreditPerson(reduceItems(data.combined_credits.crew), language),
+      external_ids: adapterSocialLinks(data.external_ids),
       translations: data.translations.translations,
     };
 

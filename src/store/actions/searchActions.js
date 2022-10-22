@@ -1,5 +1,5 @@
 import axiosMod from 'services/axiosMod';
-import { viewsForCardMovie, viewsForCardPerson } from 'services/formatData';
+import { adapterCardMovie, adapterCardPerson } from 'adapter';
 
 async function getSearch(
   query = '',
@@ -27,19 +27,19 @@ async function getSearch(
         page: movie.data.page,
         total_pages: movie.data.total_pages,
         total_results: movie.data.total_results,
-        results: viewsForCardMovie(movie.data.results, 'movie', language),
+        results: adapterCardMovie(movie.data.results, 'movie', language),
       },
       tv: {
         page: tv.data.page,
         total_pages: tv.data.total_pages,
         total_results: tv.data.total_results,
-        results: viewsForCardMovie(tv.data.results, 'tv', language),
+        results: adapterCardMovie(tv.data.results, 'tv', language),
       },
       person: {
         page: person.data.page,
         total_pages: person.data.total_pages,
         total_results: person.data.total_results,
-        results: viewsForCardPerson(person.data.results, language),
+        results: adapterCardPerson(person.data.results, language),
       },
     };
     return response;
@@ -73,9 +73,7 @@ async function getSearchByPage(
       total_pages: data.total_pages,
       total_results: data.total_results,
       results:
-        type === 'person'
-          ? viewsForCardPerson(data.results, language)
-          : viewsForCardMovie(data.results, type, language),
+        type === 'person' ? adapterCardPerson(data.results, language) : adapterCardMovie(data.results, type, language),
     };
     return response;
   } catch (error) {
