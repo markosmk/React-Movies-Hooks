@@ -30,18 +30,14 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
         className="w-full bg-gradient-to-t from-black via-black dark:from-slate-800 dark:via-slate-800 relative overflow-hidden rounded-lg group flex flex-col min-h-max sm:min-h-[30rem] select-none"
       >
         <div className="relative overflow-hidden max-h-80">
-          <div
-            className={`justify-center items-center h-80 bg-slate-700 ${
-              loading ? 'flex' : 'hidden'
-            }`}
-          >
+          <div className={`justify-center items-center h-80 bg-slate-700 ${loading ? 'flex' : 'hidden'}`}>
             <SpinnerIcon />
           </div>
           <div className={loading ? 'hidden' : 'block'}>
             <img
               src={poster}
               alt={title}
-              className="w-full block group-hover:scale-105 transition-transform duration-300"
+              className="w-full block group-hover:scale-105 lg:transition-transform lg:duration-300"
               onLoad={() => setLoading(false)}
             />
           </div>
@@ -74,7 +70,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
               )}
             </div>
           </div> */}
-          <div className="absolute left-0 bottom-0 w-full h-1/3 group-hover:h-1/6 bg-gradient-to-t from-black dark:from-slate-800 to-transparent transition-all duration-500"></div>
+          <div className="absolute left-0 bottom-0 w-full h-1/3 group-hover:h-1/6 bg-gradient-to-t from-black dark:from-slate-800 to-transparent lg:transition-all lg:duration-500"></div>
         </div>
         <div className="-mt-8 p-4 z-10 relative flex flex-1 flex-col justify-between">
           <div>
@@ -82,9 +78,7 @@ function CardMovie({ id, title, overview, poster, vote, date, language, type }) 
               {title}
               <span className="ml-1 text-xs uppercase text-slate-600">{language}</span>
             </h2>
-            <p className="text-sm text-slate-400 leading-6 my-3 hidden sm:flex">
-              {overview}
-            </p>
+            <p className="text-sm text-slate-400 leading-6 my-3 hidden sm:flex">{overview}</p>
           </div>
           <div className="flex w-full items-center gap-4">
             <span className="text-xs sm:text-sm text-slate-400 sm:text-white  whitespace-nowrap overflow-hidden overflow-ellipsis font-semibold">
