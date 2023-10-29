@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { ChevronUpIcon } from '@heroicons/react/outline';
+import { ChevronUpIcon } from '@heroicons/react/24/outline';
 
-function ScrollToTopBtn() {
+export const ScrollToTopBtn = () => {
   const [visible, setVisible] = useState(false);
 
   // Show button when page is scorlled upto given distance
@@ -29,15 +29,8 @@ function ScrollToTopBtn() {
   };
 
   return (
-    <button
-      type="button"
-      className="scrollTop text-slate-400"
-      data-open={visible}
-      onClick={scrollToTop}
-    >
+    <button type="button" className="scrollTop text-slate-400" data-open={visible} onClick={scrollToTop}>
       <ChevronUpIcon className="h-6 w-6" />
     </button>
   );
-}
-
-export default ScrollToTopBtn;
+};
