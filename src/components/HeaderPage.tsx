@@ -1,9 +1,15 @@
-function HeaderPage({ title, description, children }) {
+import { ReactNode } from 'react';
+
+interface HeaderPageProps {
+  title: String;
+  description: String;
+  children?: ReactNode;
+}
+
+export const HeaderPage = ({ title, description, children }: HeaderPageProps) => {
   return (
     <div className="p-12 bg-slate-100 dark:bg-slate-700 text-center">
-      <h2 className="mb-3 text-5xl font-bold text-black dark:text-white uppercase">
-        {title}
-      </h2>
+      <h2 className="mb-3 text-5xl font-bold text-black dark:text-white uppercase">{title}</h2>
       <p className="mb-0 py-4 text-slate-600 dark:text-slate-400">{description}</p>
       {children && (
         <div className="container mt-4">
@@ -12,6 +18,4 @@ function HeaderPage({ title, description, children }) {
       )}
     </div>
   );
-}
-
-export default HeaderPage;
+};
