@@ -1,20 +1,17 @@
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-function LinkFooter({ path, name }) {
+const LinkFooter = ({ path, name }) => {
   return (
     <li>
-      <Link
-        to={path}
-        className="text-slate-400 text-sm leading-7 hover:text-cyan-500 transition-colors"
-      >
+      <Link href={path} className="text-slate-400 text-sm leading-7 hover:text-cyan-500 transition-colors">
         {name}
       </Link>
     </li>
   );
-}
+};
 
-function Footer() {
+export const Footer = memo(() => {
   const urls = {
     general: [
       { path: '/', name: 'Home' },
@@ -45,9 +42,8 @@ function Footer() {
     <div className="mt-12 sm:mt-24 pt-12 sm:pt-24 pb-3 bg-black">
       <div className="container">
         <h4 className="mb-4 text-xl sm:text-2xl text-slate-100  font-light leading-10">
-          Every single day our service is used by millions of people while we process over
-          3 billion requests. We've proven for years that this is a service that can be
-          trusted and relied on.
+          Every single day our service is used by millions of people while we process over 3 billion requests. We've
+          proven for years that this is a service that can be trusted and relied on.
         </h4>
         <div className="pt-14 mt-14 border-t border-slate-700">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -112,6 +108,4 @@ function Footer() {
       </div>
     </div>
   );
-}
-
-export default memo(Footer);
+});
