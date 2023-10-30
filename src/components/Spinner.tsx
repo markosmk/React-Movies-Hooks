@@ -1,10 +1,10 @@
-export function CardItem() {
+export const CardItem = () => {
   return (
     <div className="animate-pulse-fast block rounded-md w-full min-h-[30rem] bg-slate-100 dark:bg-slate-800"></div>
   );
-}
+};
 
-export function SpinnerCard({ count = 8 }) {
+export const SpinnerCard = ({ count = 8 }: { count: number }) => {
   return (
     <>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4">
@@ -14,9 +14,9 @@ export function SpinnerCard({ count = 8 }) {
       </div>
     </>
   );
-}
+};
 
-export function SpinnerCardWithFilter({ count = 8 }) {
+export const SpinnerCardWithFilter = ({ count = 8 }: { count: number }) => {
   return (
     <>
       <div className="block h-14 w-full bg-slate-100 dark:bg-slate-800 rounded-lg animate-pulse-fast"></div>
@@ -27,9 +27,9 @@ export function SpinnerCardWithFilter({ count = 8 }) {
       </div>
     </>
   );
-}
+};
 
-export function SpinnerDetailMovie() {
+export const SpinnerDetailMovie = () => {
   return (
     <>
       <div className="animate-pulse-fast block rounded-lg p-4 w-full h-128 bg-slate-100 dark:bg-slate-800"></div>
@@ -39,9 +39,9 @@ export function SpinnerDetailMovie() {
       </div>
     </>
   );
-}
+};
 
-export function SpinnerDetailPerson() {
+export const SpinnerDetailPerson = () => {
   return (
     <>
       <div className="flex gap-6 mt-8">
@@ -69,27 +69,24 @@ export function SpinnerDetailPerson() {
       </div>
     </>
   );
-}
+};
 
-export function SpinnerCarousel() {
+export const SpinnerCarousel = () => {
   return (
     <>
       <div className="animate-pulse-fast block rounded-lg w-full h-64 sm:h-96 lg:h-128 bg-slate-100 dark:bg-slate-800"></div>
     </>
   );
-}
+};
 
-export function SpinnerGenres() {
+export const SpinnerGenres = () => {
   return (
     <>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 w-full whitespace-nowrap overflow-hidden h-20 gap-4">
         {Array.from({ length: 6 }).map((_, idx) => (
-          <div
-            key={idx}
-            className="animate-pulse-fast block rounded-md h-20 bg-slate-100 dark:bg-slate-800"
-          ></div>
+          <div key={idx} className="animate-pulse-fast block rounded-md h-20 bg-slate-100 dark:bg-slate-800"></div>
         ))}
       </div>
     </>
   );
-}
+};
