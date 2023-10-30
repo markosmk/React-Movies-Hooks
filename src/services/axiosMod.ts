@@ -10,7 +10,7 @@ export default function axiosMod(req, urlParams = {}) {
       params.delete(key);
     }
   });
-  params.append('api_key', process.env.REACT_APP_API_KEY_V3);
+  params.append('api_key', process.env.NEXT_PUBLIC_API_KEY_V3 ?? '');
   // console.log(params.toString());
   return axios.get(req, { params, baseURL });
 }
